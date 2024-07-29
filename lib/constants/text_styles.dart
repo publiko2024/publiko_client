@@ -33,9 +33,18 @@ abstract class TextStyles {
     fontFamily: 'Pretendard',
     fontWeight: FontWeight.w600,
   );
-  // static TextStyle headerTextBold = boldStyle(getHeight(30));
-  // static TextStyle largeTextBold = boldStyle(getHeight(20));
-  // static TextStyle mediumTextBold = boldStyle(getHeight(18));
-  // static TextStyle normalTextBold = boldStyle(getHeight(16));
-  // static TextStyle smallTextBold = boldStyle(getHeight(14));
+
+  static TextStyle chatText = TextStyle(
+    fontSize: getHeight(14),
+    color: ColorStyles.white,
+    fontFamily: 'Pretendard',
+    fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle chatbotText = TextStyle(
+    fontSize: getHeight(14),
+    color: ColorStyles.black,
+    fontFamily: 'Pretendard',
+    fontWeight: FontWeight.w600,
+  );
 }

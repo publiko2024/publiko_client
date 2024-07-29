@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
     SizeConfig().init(context);
 
     return MaterialApp.router(
-      title: 'Food Recipe',
+      title: 'Publiko',
       theme: ThemeData(
         useMaterial3: true,
         primaryColor: ColorStyles.primary,
