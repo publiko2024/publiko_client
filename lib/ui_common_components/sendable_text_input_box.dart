@@ -4,13 +4,15 @@ import 'package:publiko_app/constants/color_styles.dart';
 import 'package:publiko_app/constants/size_config.dart';
 
 class SendableTextInputBox extends StatelessWidget {
-  final void Function(String text) onChanged;
+  final FocusNode focusNode;
+  final TextEditingController textController;
   final void Function() send;
   final String hintText;
 
   const SendableTextInputBox({
     super.key,
-    required this.onChanged,
+    required this.focusNode,
+    required this.textController,
     required this.send,
     required this.hintText,
   });
@@ -19,8 +21,7 @@ class SendableTextInputBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding:
-          EdgeInsets.fromLTRB(getWidth(10), 0, getWidth(10), getHeight(25)),
+      padding: EdgeInsets.fromLTRB(getWidth(10), 0, getWidth(10), getHeight(25)),
       decoration: const BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -33,22 +34,22 @@ class SendableTextInputBox extends StatelessWidget {
         ],
       ),
       child: Padding(
-        padding: EdgeInsets.only(top: getHeight(10)),
+        padding: EdgeInsets.only(top: getHeight(10),left: getWidth(10)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(
               child: TextField(
-                onChanged: onChanged,
-                maxLines: 4, // Allow the TextField to grow with the content
-                minLines: 1, // Set a minimum number of lines
+                focusNode: focusNode,
+                controller: textController,
+                maxLines: 4,
+                minLines: 1,
                 decoration: InputDecoration(
                   hintText: hintText,
                   focusColor: ColorStyles.primary,
                   focusedBorder: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
-                    borderSide:
-                        BorderSide(color: ColorStyles.primary, width: 1.0),
+                    borderSide: BorderSide(color: ColorStyles.primary, width: 1.0),
                   ),
                   suffixIcon: IconButton(
                     onPressed: () {},
