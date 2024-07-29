@@ -5,11 +5,14 @@ import 'package:publiko_app/constants/size_config.dart';
 
 class BottomNaviBar extends StatelessWidget {
   final int currentIndex;
-  final Function(int) onTap;
+  final void Function(int) changeTap;
+  final void Function(BuildContext) gotoChatRoom;
+
   const BottomNaviBar({
     super.key,
     required this.currentIndex,
-    required this.onTap,
+    required this.changeTap,
+    required this.gotoChatRoom,
   });
 
   @override
@@ -24,12 +27,11 @@ class BottomNaviBar extends StatelessWidget {
         children: [
           _buildNavItem('assets/icons/home_tab_disabled.svg',
               'assets/icons/home_tab.svg', 0),
-          _buildNavItem('assets/icons/chat_tab_disabled.svg',
-              'assets/icons/chat_tab.svg', 1),
+          _gotoChatScreenBtn(context),
           _buildNavItem('assets/icons/feed_tab_disabled.svg',
-              'assets/icons/feed_tab.svg', 2),
+              'assets/icons/feed_tab.svg', 1),
           _buildNavItem('assets/icons/profile_tab_disabled.svg',
-              'assets/icons/profile_tab.svg', 3),
+              'assets/icons/profile_tab.svg', 2),
         ],
       ),
     );
@@ -40,11 +42,24 @@ class BottomNaviBar extends StatelessWidget {
     final isSelected = currentIndex == index;
 
     return MaterialButton(
-      onPressed: () => onTap(index),
+      onPressed: () => changeTap(index),
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
       child: SvgPicture.asset(
         isSelected ? activeIconPath : inactiveIconPath,
+        height: getHeight(24),
+        width: getWidth(24),
+      ),
+    );
+  }
+
+  Widget _gotoChatScreenBtn(context) {
+    return MaterialButton(
+      onPressed: () => gotoChatRoom(context),
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+      child: SvgPicture.asset(
+        'assets/icons/chat_tab_disabled.svg',
         height: getHeight(24),
         width: getWidth(24),
       ),

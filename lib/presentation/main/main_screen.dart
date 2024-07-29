@@ -18,7 +18,9 @@ class MainScreen extends StatelessWidget {
           children: viewModel.screens,
         )),
         bottomNavigationBar: BottomNaviBar(
-            currentIndex: viewModel.currentIndex,
-            onTap: viewModel.changeIndex));
+          currentIndex: viewModel.currentIndex,
+          changeTap: viewModel.changeIndex,
+          gotoChatRoom: viewModel.gotoChatRoom,
+        ));
   }
 }
