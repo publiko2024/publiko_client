@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:publiko_app/constants/size_config.dart';
-import 'package:publiko_app/presentation/common_components/default_btn.dart';
+import 'package:publiko_app/ui_common_components/default_btn.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});

@@ -38,3 +38,6 @@ double getWidth(double inputWidth) {
       ? screenWidthPortrait
       : screenWidthLandscape;
 }
+
+double defaultPaddingWidth = getWidth(20);
+double defaultPaddingHeight = getHeight(20);
