@@ -7,6 +7,7 @@ import 'package:publiko_app/constants/size_config.dart';
 import 'package:publiko_app/constants/text_styles.dart';
 import 'package:publiko_app/presentation/chatbot/chatbot_screen_view_model.dart';
 import 'package:publiko_app/presentation/chatbot/components/recommand_question.dart';
+import 'package:publiko_app/ui_common_components/sendable_text_input_box.dart';
 
 class ChatbotScreen extends StatelessWidget {
   const ChatbotScreen({super.key});
@@ -53,11 +54,10 @@ class ChatbotScreen extends StatelessWidget {
                 child: viewModel.messages.isEmpty
                     ? const RecommandQuestion()
                     : Text('notEmpty')),
-            Container(
-              width: double.infinity,
-              height: getHeight(100),
-              decoration: BoxDecoration(color: ColorStyles.primary),
-              child: TextField(),
+            SendableTextInputBox(
+              onChanged: (text) => viewModel.setInputText(text),
+              send: viewModel.sendMessage,
+              hintText: '무엇이든 물어보세요',
             )
           ],
         ),
