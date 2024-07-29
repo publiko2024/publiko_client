@@ -34,6 +34,9 @@ class ChatbotAnswerBubble extends StatelessWidget {
                   fit: BoxFit.cover, // 이미지가 동그라미에 맞게 잘리면서 꽉 차도록 설정
                 ),
               ),
+              const SizedBox(
+                height: 5,
+              ),
               CircleAvatar(
                   backgroundColor: ColorStyles.white,
                   radius: getWidth(17),
@@ -46,11 +49,11 @@ class ChatbotAnswerBubble extends StatelessWidget {
             ],
           ),
           SizedBox(
-            width: getWidth(5),
+            width: getWidth(10),
           ),
           Container(
             constraints: BoxConstraints(
-              maxWidth: getWidth(280),
+              maxWidth: getWidth(285),
             ),
             padding: EdgeInsets.all(getWidth(10)),
             decoration: ShapeDecoration(

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:publiko_app/constants/color_styles.dart';
 import 'package:publiko_app/constants/size_config.dart';
 
@@ -21,7 +22,8 @@ class SendableTextInputBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.fromLTRB(getWidth(10), 0, getWidth(10), getHeight(25)),
+      padding:
+          EdgeInsets.fromLTRB(getWidth(10), 0, getWidth(10), getHeight(25)),
       decoration: const BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -34,7 +36,7 @@ class SendableTextInputBox extends StatelessWidget {
         ],
       ),
       child: Padding(
-        padding: EdgeInsets.only(top: getHeight(10),left: getWidth(10)),
+        padding: EdgeInsets.only(top: getHeight(10), left: getWidth(10)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -49,7 +51,8 @@ class SendableTextInputBox extends StatelessWidget {
                   focusColor: ColorStyles.primary,
                   focusedBorder: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
-                    borderSide: BorderSide(color: ColorStyles.primary, width: 1.0),
+                    borderSide:
+                        BorderSide(color: ColorStyles.primary, width: 1.0),
                   ),
                   suffixIcon: IconButton(
                     onPressed: () {},
@@ -74,11 +77,7 @@ class SendableTextInputBox extends StatelessWidget {
                 minimumSize: Size(getWidth(45), getHeight(45)),
                 backgroundColor: ColorStyles.primary,
               ),
-              child: Icon(
-                CupertinoIcons.paperplane,
-                size: getWidth(20),
-                color: ColorStyles.white,
-              ),
+              child: SvgPicture.asset('assets/icons/send.svg'),
             ),
           ],
         ),
