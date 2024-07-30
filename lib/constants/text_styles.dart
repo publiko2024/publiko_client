@@ -14,7 +14,7 @@ abstract class TextStyles {
   }
 
   static TextStyle appBarText = TextStyle(
-    fontSize: getHeight(18),
+    fontSize: getHeight(20),
     color: ColorStyles.black,
     fontFamily: 'Pretendard',
     fontWeight: FontWeight.w700,
@@ -46,5 +46,26 @@ abstract class TextStyles {
     color: ColorStyles.black,
     fontFamily: 'Pretendard',
     fontWeight: FontWeight.w600,
+  );
+
+  static TextStyle postBodyText = TextStyle(
+    fontSize: getHeight(14),
+    color: ColorStyles.black,
+    fontFamily: 'Pretendard',
+    fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle createdAtText = TextStyle(
+    fontSize: getHeight(12),
+    color: ColorStyles.gray2,
+    fontFamily: 'Pretendard',
+    fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle secondaryColorText = TextStyle(
+    fontSize: getHeight(14),
+    color: ColorStyles.secondary,
+    fontFamily: 'Pretendard',
+    fontWeight: FontWeight.w400,
   );
 }

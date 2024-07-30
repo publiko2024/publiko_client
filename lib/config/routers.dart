@@ -3,8 +3,12 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:publiko_app/data/data_source/chatbot/chatbot_api_mock.dart';
 import 'package:publiko_app/data/repository/chat_repo_impl.dart';
+import 'package:publiko_app/data/repository/comment_repo_impl.dart';
+import 'package:publiko_app/data/repository/post_repo_impl.dart';
 import 'package:publiko_app/presentation/chatbot/chatbot_screen.dart';
 import 'package:publiko_app/presentation/chatbot/chatbot_screen_view_model.dart';
+import 'package:publiko_app/presentation/community_detail/community_detail_screen.dart';
+import 'package:publiko_app/presentation/community_detail/community_detail_screen_view_model.dart';
 import 'package:publiko_app/presentation/main/main_screen.dart';
 import 'package:publiko_app/presentation/main/main_screen_view_model.dart';
 import 'package:publiko_app/presentation/splash/splash_screen.dart';
@@ -35,6 +39,16 @@ class Routes {
                 ),
               ),
               child: const ChatbotScreen(),
+            );
+          }),
+      GoRoute(
+          path: '/communityDetail',
+          builder: (BuildContext context, GoRouterState state) {
+            final int postId = state.extra as int;
+            return ChangeNotifierProvider(
+              create: (context) => CommunityDetailScreenViewModel(
+                  PostRepoImpl(), CommentRepoImpl()),
+              child: CommunityDetailScreen(postId: postId),
             );
           }),
     ],
