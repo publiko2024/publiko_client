@@ -1,21 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:publiko_app/constants/color_styles.dart';
 import 'package:publiko_app/constants/size_config.dart';
 import 'package:publiko_app/constants/text_styles.dart';
-import 'package:publiko_app/presentation/community_main/community_main_screen_view_model.dart';
-import 'package:publiko_app/presentation/community_main/components/inner_tabs.dart';
-import 'package:publiko_app/presentation/community_main/components/post_list_tile.dart';
-import 'package:publiko_app/presentation/community_main/components/post_list_tile_with_image.dart';
+import 'package:publiko_app/presentation/post_main/components/post_list_tile.dart';
+import 'package:publiko_app/presentation/post_main/components/post_list_tile_with_image.dart';
+import 'package:publiko_app/presentation/post_main/post_main_screen_view_model.dart';
+import 'package:publiko_app/presentation/post_main/components/inner_tabs.dart';
 
-class CommunityMainScreen extends StatelessWidget {
-  const CommunityMainScreen({super.key});
+class PostMainScreen extends StatelessWidget {
+  const PostMainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<CommunityMainScreenViewModel>();
+    final viewModel = context.watch<PostMainScreenViewModel>();
     return Stack(
       children: [
         CustomScrollView(
@@ -74,6 +75,7 @@ class CommunityMainScreen extends StatelessWidget {
             backgroundColor: ColorStyles.secondary,
             onPressed: () {
               //post create navigate
+              context.push('/postCreate');
             },
             child: SvgPicture.asset(
               'assets/icons/create_post.svg',

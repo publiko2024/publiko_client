@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:publiko_app/constants/size_config.dart';
 import 'package:publiko_app/constants/text_styles.dart';
 import 'package:publiko_app/domain/model/post.dart';
-import 'package:publiko_app/presentation/community_detail/components/comment_list.dart';
+import 'package:publiko_app/presentation/post_detail/components/comment_list.dart';
 import 'package:publiko_app/ui_common_components/horizontal_divider.dart';
 import 'package:publiko_app/util/date_convert.dart';
 

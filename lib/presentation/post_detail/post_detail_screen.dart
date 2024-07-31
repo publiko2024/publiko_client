@@ -5,24 +5,24 @@ import 'package:provider/provider.dart';
 import 'package:publiko_app/constants/color_styles.dart';
 import 'package:publiko_app/constants/size_config.dart';
 import 'package:publiko_app/constants/text_styles.dart';
-import 'package:publiko_app/presentation/community_detail/community_detail_screen_view_model.dart';
-import 'package:publiko_app/presentation/community_detail/components/post_body.dart';
+import 'package:publiko_app/presentation/post_detail/components/post_body.dart';
+import 'package:publiko_app/presentation/post_detail/post_detail_screen_view_model.dart';
 import 'package:publiko_app/ui_common_components/sendable_text_input_box.dart';
 
-class CommunityDetailScreen extends StatefulWidget {
+class PostDetailScreen extends StatefulWidget {
   final int postId;
-  const CommunityDetailScreen({super.key, required this.postId});
+  const PostDetailScreen({super.key, required this.postId});
 
   @override
-  State<CommunityDetailScreen> createState() => _CommunityDetailScreenState();
+  State<PostDetailScreen> createState() => _PostDetailScreenState();
 }
 
-class _CommunityDetailScreenState extends State<CommunityDetailScreen> {
+class _PostDetailScreenState extends State<PostDetailScreen> {
   @override
   void initState() {
     super.initState();
     Future.microtask(() {
-      final viewModel = context.read<CommunityDetailScreenViewModel>();
+      final viewModel = context.read<PostDetailScreenViewModel>();
       viewModel.fetchPost(postId: widget.postId);
       viewModel.scrollController.addListener(viewModel.onScroll);
     });
@@ -30,7 +30,7 @@ class _CommunityDetailScreenState extends State<CommunityDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<CommunityDetailScreenViewModel>();
+    final viewModel = context.watch<PostDetailScreenViewModel>();
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(

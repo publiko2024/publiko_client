@@ -14,7 +14,7 @@ class PostListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push('/communityDetail', extra: post.id);
+        context.push('/postDetail', extra: post.id);
       },
       child: Padding(
         padding: EdgeInsets.symmetric(
@@ -27,29 +27,29 @@ class PostListTile extends StatelessWidget {
           shadowColor: ColorStyles.gray4,
           elevation: 2.0,
           child: Padding(
-            padding:  EdgeInsets.all(getWidth(12)),
+            padding: EdgeInsets.all(getWidth(12)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-               Text(
+                Text(
                   post.title,
                   style: TextStyles.boldText,
                   overflow: TextOverflow.ellipsis,
                 ),
-                 SizedBox(height: getHeight(8)),
-                 Text(
+                SizedBox(height: getHeight(8)),
+                Text(
                   post.content,
                   style: TextStyles.postBodyText,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
-                 SizedBox(height: getHeight(8)),
+                SizedBox(height: getHeight(8)),
                 Text(
                   dateToElapsedTime(post.createdAt),
                   style: TextStyles.createdAtText,
                 ),
-                
-                Text('조회 ${post.viewCount}  댓글 ${post.commentCount}',
+                Text(
+                  '조회 ${post.viewCount}  댓글 ${post.commentCount}',
                   style: TextStyles.secondaryColorText,
                 )
               ],

@@ -1,5 +1,3 @@
-import 'package:publiko_app/domain/model/chat_message.dart';
-
-abstract interface class ChatbotApi{
-  Future<ChatMessage> sendMessage({required String message});
+abstract interface class ChatbotApi {
+  Future<String> sendMessage({required String message});
 }

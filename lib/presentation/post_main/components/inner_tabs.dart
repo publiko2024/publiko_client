@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:publiko_app/constants/color_styles.dart';
 import 'package:publiko_app/constants/size_config.dart';
-import 'package:publiko_app/presentation/community_main/community_main_screen_view_model.dart';
+import 'package:publiko_app/presentation/post_main/post_main_screen_view_model.dart';
 
 class InnerTabs extends SliverPersistentHeaderDelegate {
-  final CommunityTabType tabType;
-  final void Function(CommunityTabType type) changeTapType;
+  final PostTabType tabType;
+  final void Function(PostTabType type) changeTapType;
   const InnerTabs({required this.tabType, required this.changeTapType});
   @override
   Widget build(
@@ -18,52 +18,52 @@ class InnerTabs extends SliverPersistentHeaderDelegate {
         child: Row(
           children: [
             TextButton(
-              onPressed: () => changeTapType(CommunityTabType.recent),
+              onPressed: () => changeTapType(PostTabType.recent),
               style: TextButton.styleFrom(
-                  foregroundColor: (tabType == CommunityTabType.recent)
+                  foregroundColor: (tabType == PostTabType.recent)
                       ? ColorStyles.white
                       : ColorStyles.gray2,
-                  backgroundColor: (tabType == CommunityTabType.recent)
+                  backgroundColor: (tabType == PostTabType.recent)
                       ? ColorStyles.primary
                       : ColorStyles.white,
                   minimumSize: Size(getWidth(60), getHeight(36)),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5.0), // 테두리 둥글기 설정
                   ),
-                  side: (tabType == CommunityTabType.recent) //테두리 색
+                  side: (tabType == PostTabType.recent) //테두리 색
                       ? const BorderSide(color: ColorStyles.primary)
                       : const BorderSide(color: Color(0xffbfbfbf))),
               child: Text(
                 '최신',
                 style: TextStyle(
                     fontSize: getHeight(16),
-                    fontWeight: (tabType == CommunityTabType.recent)
+                    fontWeight: (tabType == PostTabType.recent)
                         ? FontWeight.w600
                         : FontWeight.w400),
               ),
             ),
             SizedBox(width: getWidth(10)),
             TextButton(
-              onPressed: () => changeTapType(CommunityTabType.popular),
+              onPressed: () => changeTapType(PostTabType.popular),
               style: TextButton.styleFrom(
-                  foregroundColor: (tabType == CommunityTabType.popular)
+                  foregroundColor: (tabType == PostTabType.popular)
                       ? ColorStyles.white
                       : ColorStyles.gray2,
-                  backgroundColor: (tabType == CommunityTabType.popular)
+                  backgroundColor: (tabType == PostTabType.popular)
                       ? ColorStyles.primary
                       : ColorStyles.white,
                   minimumSize: Size(getWidth(60), getHeight(36)),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5.0), // 테두리 둥글기 설정
                   ),
-                  side: (tabType == CommunityTabType.popular) //테두리 색
+                  side: (tabType == PostTabType.popular) //테두리 색
                       ? const BorderSide(color: ColorStyles.primary)
                       : const BorderSide(color: Color(0xffbfbfbf))),
               child: Text(
                 '인기',
                 style: TextStyle(
                     fontSize: getHeight(16),
-                    fontWeight: (tabType == CommunityTabType.popular)
+                    fontWeight: (tabType == PostTabType.popular)
                         ? FontWeight.w600
                         : FontWeight.w400),
               ),

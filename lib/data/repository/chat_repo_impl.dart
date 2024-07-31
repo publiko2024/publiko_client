@@ -7,8 +7,12 @@ class ChatRepoImpl implements ChatRepo {
   const ChatRepoImpl(this._chatbotApi);
   @override
   Future<ChatMessage> createChatMessage({required ChatMessage question}) async {
-   final data =  await _chatbotApi.sendMessage(message: question.message);
-   return data;
+    final String answer =
+        await _chatbotApi.sendMessage(message: question.message);
+    final ChatMessage answerMessage =
+        ChatMessage(name: 'chatbot', message: answer);
+
+    return answerMessage;
   }
 
   @override

@@ -2,35 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:publiko_app/domain/model/post.dart';
 import 'package:publiko_app/domain/repository/post_repo.dart';
 
-class CommunityMainScreenViewModel with ChangeNotifier {
+class PostMainScreenViewModel with ChangeNotifier {
   final PostRepo _postRepo;
-  CommunityMainScreenViewModel(this._postRepo) {
+  PostMainScreenViewModel(this._postRepo) {
     fetchPosts();
-    sortPosts(CommunityTabType.recent);
+    sortPosts(PostTabType.recent);
   }
 
   List<Post> _posts = [];
   List<Post> get posts => _posts;
 
-  CommunityTabType _tabType = CommunityTabType.recent;
-  CommunityTabType get tabType => _tabType;
+  PostTabType _tabType = PostTabType.recent;
+  PostTabType get tabType => _tabType;
 
   void fetchPosts() async {
     _posts = await _postRepo.getPosts();
     sortPosts(_tabType);
   }
 
-  void sortPosts(CommunityTabType type) {
+  void sortPosts(PostTabType type) {
     _tabType = type;
     switch (_tabType) {
-      case CommunityTabType.recent:
+      case PostTabType.recent:
         _posts.sort((a, b) => b.createdAt.compareTo(a.createdAt));
         notifyListeners();
-      case CommunityTabType.popular:
+      case PostTabType.popular:
         _posts.sort((a, b) => b.viewCount.compareTo(a.viewCount));
         notifyListeners();
     }
   }
 }
 
-enum CommunityTabType { popular, recent }
+enum PostTabType { popular, recent }

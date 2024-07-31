@@ -15,7 +15,7 @@ class PostListTileWithImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push('/communityDetail', extra: post.id);
+        context.push('/postDetail', extra: post.id);
       },
       child: Padding(
         padding: EdgeInsets.symmetric(

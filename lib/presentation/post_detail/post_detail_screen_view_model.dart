@@ -6,10 +6,10 @@ import 'package:publiko_app/domain/model/post.dart';
 import 'package:publiko_app/domain/repository/comment_repo.dart';
 import 'package:publiko_app/domain/repository/post_repo.dart';
 
-class CommunityDetailScreenViewModel with ChangeNotifier {
+class PostDetailScreenViewModel with ChangeNotifier {
   final PostRepo _postRepo;
   final CommentRepo _commentRepo;
-  CommunityDetailScreenViewModel(this._postRepo, this._commentRepo);
+  PostDetailScreenViewModel(this._postRepo, this._commentRepo);
 
   Post _post = Post(
       id: -1,

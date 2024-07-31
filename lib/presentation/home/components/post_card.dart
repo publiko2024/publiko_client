@@ -15,7 +15,7 @@ class PostCard extends StatelessWidget {
       padding: EdgeInsets.only(right: getWidth(10)),
       child: GestureDetector(
         onTap: () {
-          context.push('/communityDetail', extra: post.id);
+          context.push('/postDetail', extra: post.id);
         },
         child: Card(
           color: ColorStyles.white,
