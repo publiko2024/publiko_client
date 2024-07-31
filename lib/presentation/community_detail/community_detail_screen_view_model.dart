@@ -30,6 +30,18 @@ class CommunityDetailScreenViewModel with ChangeNotifier {
   final FocusNode _focusNode = FocusNode();
   FocusNode get focusNode => _focusNode;
 
+  final ScrollController _scrollController = ScrollController();
+  ScrollController get scrollController => _scrollController;
+
+  bool _isTitleVisibleInAppBar = false;
+  bool get isTitleVisibleInAppBar => _isTitleVisibleInAppBar;
+
+  void onScroll() {
+    // 스크롤 오프셋에 따라 타이틀의 표시 여부 결정 (예: 50px)
+    _isTitleVisibleInAppBar = _scrollController.offset > 10;
+    notifyListeners();
+  }
+
   void fetchPost({required int postId}) async {
     _post = await _postRepo.getPost(postId);
     notifyListeners();
@@ -40,7 +52,28 @@ class CommunityDetailScreenViewModel with ChangeNotifier {
         postId: _post.id,
         nickname: '새싹톤참가자${Random().nextInt(100)}',
         content: _textController.text);
-    _post.comments.add(createdComment);
+    _post = _post.copyWith(
+      comments: List.from(_post.comments)..add(createdComment),
+    );
+    _textController.clear();
+    _focusNode.unfocus();
+    scrollToEnd();
     notifyListeners();
+  }
+
+  void scrollToEnd() async {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _scrollController.animateTo(_scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 400),
+          curve: Curves.fastOutSlowIn);
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    _focusNode.dispose();
+    _textController.dispose();
+    super.dispose();
   }
 }

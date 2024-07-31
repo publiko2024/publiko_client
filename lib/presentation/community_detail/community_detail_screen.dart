@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:publiko_app/constants/color_styles.dart';
 import 'package:publiko_app/constants/size_config.dart';
+import 'package:publiko_app/constants/text_styles.dart';
 import 'package:publiko_app/presentation/community_detail/community_detail_screen_view_model.dart';
 import 'package:publiko_app/presentation/community_detail/components/post_body.dart';
 import 'package:publiko_app/ui_common_components/sendable_text_input_box.dart';
@@ -23,6 +24,7 @@ class _CommunityDetailScreenState extends State<CommunityDetailScreen> {
     Future.microtask(() {
       final viewModel = context.read<CommunityDetailScreenViewModel>();
       viewModel.fetchPost(postId: widget.postId);
+      viewModel.scrollController.addListener(viewModel.onScroll);
     });
   }
 
@@ -42,6 +44,14 @@ class _CommunityDetailScreenState extends State<CommunityDetailScreen> {
             },
             icon: const Icon(CupertinoIcons.back),
           ),
+          //scroller controller가 최상단이 아니라면 title을 보여주고 아니면 안보여줌
+          title: (viewModel.isTitleVisibleInAppBar)
+              ? Text(
+                  viewModel.post.title,
+                  style: TextStyles.boldText,
+                  overflow: TextOverflow.ellipsis,
+                )
+              : null,
           actions: [
             IconButton(
               padding: EdgeInsets.only(right: defaultPaddingWidth),
@@ -53,7 +63,10 @@ class _CommunityDetailScreenState extends State<CommunityDetailScreen> {
         body: Column(
           children: [
             Expanded(
-              child: PostBody(post: viewModel.post),
+              child: PostBody(
+                post: viewModel.post,
+                scrollController: viewModel.scrollController,
+              ),
             ),
             SendableTextInputBox(
               focusNode: viewModel.focusNode,

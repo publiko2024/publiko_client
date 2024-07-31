@@ -36,7 +36,7 @@ class CommunityMainScreen extends StatelessWidget {
                 ),
               ],
               elevation: 0.0,
-              backgroundColor: Colors.transparent,
+              backgroundColor: ColorStyles.background,
               pinned: false,
               floating: true,
             ),
