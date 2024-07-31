@@ -27,6 +27,13 @@ abstract class TextStyles {
     fontWeight: FontWeight.w600,
   );
 
+  static TextStyle menuText = TextStyle(
+    fontSize: getHeight(16),
+    color: ColorStyles.black,
+    fontFamily: 'Pretendard',
+    fontWeight: FontWeight.w400,
+  );
+
   static TextStyle hintText = TextStyle(
     fontSize: getHeight(14),
     color: ColorStyles.gray3,
@@ -68,7 +75,7 @@ abstract class TextStyles {
     fontFamily: 'Pretendard',
     fontWeight: FontWeight.w400,
   );
-   static TextStyle nicknameText = TextStyle(
+  static TextStyle nicknameText = TextStyle(
     fontSize: getHeight(14),
     color: ColorStyles.primary,
     fontFamily: 'Pretendard',
