@@ -4,6 +4,7 @@ import 'package:publiko_app/constants/color_styles.dart';
 import 'package:publiko_app/constants/size_config.dart';
 import 'package:publiko_app/constants/text_styles.dart';
 import 'package:publiko_app/domain/model/post.dart';
+import 'package:publiko_app/util/date_convert.dart';
 
 class PostListTile extends StatelessWidget {
   final Post post;
@@ -25,44 +26,31 @@ class PostListTile extends StatelessWidget {
           ),
           shadowColor: ColorStyles.gray4,
           elevation: 2.0,
-          child: SizedBox(
-            width: getWidth(220),
-            height: getHeight(250),
+          child: Padding(
+            padding:  EdgeInsets.all(getWidth(12)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                (post.imageUrls.isEmpty)
-                    ? Image.asset(
-                        'assets/images/default_img.png',
-                        height: getHeight(130),
-                        width: double.infinity,
-                        fit: BoxFit.fitWidth,
-                      )
-                    : Image.asset(post.imageUrls.first),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: getWidth(12)),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: getHeight(8)),
-                      Text(
-                        '${post.viewCount}명이 이 글을 봤어요 ',
-                        style: TextStyles.secondaryColorText,
-                      ),
-                      Text(
-                        post.title,
-                        style: TextStyles.boldText,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      SizedBox(height: getHeight(8)),
-                      Text(
-                        post.content,
-                        style: TextStyles.postBodyText,
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
-                  ),
+               Text(
+                  post.title,
+                  style: TextStyles.boldText,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                 SizedBox(height: getHeight(8)),
+                 Text(
+                  post.content,
+                  style: TextStyles.postBodyText,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                 SizedBox(height: getHeight(8)),
+                Text(
+                  dateToElapsedTime(post.createdAt),
+                  style: TextStyles.createdAtText,
+                ),
+                
+                Text('조회 ${post.viewCount}  댓글 ${post.commentCount}',
+                  style: TextStyles.secondaryColorText,
                 )
               ],
             ),

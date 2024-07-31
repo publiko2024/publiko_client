@@ -6,6 +6,7 @@ class CommunityMainScreenViewModel with ChangeNotifier {
   final PostRepo _postRepo;
   CommunityMainScreenViewModel(this._postRepo) {
     fetchPosts();
+    sortPosts(CommunityTabType.recent);
   }
 
   List<Post> _posts = [];
@@ -16,6 +17,7 @@ class CommunityMainScreenViewModel with ChangeNotifier {
 
   void fetchPosts() async {
     _posts = await _postRepo.getPosts();
+    sortPosts(_tabType);
   }
 
   void sortPosts(CommunityTabType type) {

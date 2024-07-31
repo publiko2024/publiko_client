@@ -1,6 +1,6 @@
 import 'package:intl/intl.dart';
 
-// 값을 변환해서 반환해주는 메소드 (ex. dateTime -> 한국어로 변환)
+//  1분전 ~ 59분전 -> 1시간전 ~ 23시간전 -> 6월 23일
 String dateToElapsedTime(DateTime date) {
   final now = DateTime.now();
   final duration = now.difference(date);
@@ -11,10 +11,10 @@ String dateToElapsedTime(DateTime date) {
   if (inMinutes < 60) return '$inMinutes분 전';
   if (inHours < 24) return '$inHours시간 전';
 
-  return _dateWithTime(date);
+  return dateToDay(date);
 }
 
-String _dateWithTime(DateTime date) {
+String dateWithTime(DateTime date) {
   return DateFormat('MM/dd a hh:mm').format(date);
 }
 
@@ -27,20 +27,6 @@ String dateToTime(DateTime time) {
 // time ex. 2:05 PM
 String dateToTimeEng(DateTime time) {
   return DateFormat('hh:mm a').format(time);
-}
-
-// Chat에서 사용 1분전 ~ 59분전 -> 1시간전 ~ 23시간전 -> 6월 23일
-String dateToElapsedTimeOnChatMain(DateTime date) {
-  final now = DateTime.now();
-  final duration = now.difference(date);
-  final inMinutes = duration.inMinutes;
-  final inHours = duration.inHours;
-
-  if (inMinutes < 1) return '방금 전';
-  if (inMinutes < 60) return '$inMinutes분 전';
-  if (inHours < 24) return '$inHours시간 전';
-
-  return dateToDay(date);
 }
 
 // day ex. 6월 23일

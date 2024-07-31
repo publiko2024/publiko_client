@@ -8,6 +8,7 @@ import 'package:publiko_app/constants/text_styles.dart';
 import 'package:publiko_app/presentation/community_main/community_main_screen_view_model.dart';
 import 'package:publiko_app/presentation/community_main/components/inner_tabs.dart';
 import 'package:publiko_app/presentation/community_main/components/post_list_tile.dart';
+import 'package:publiko_app/presentation/community_main/components/post_list_tile_with_image.dart';
 
 class CommunityMainScreen extends StatelessWidget {
   const CommunityMainScreen({super.key});
@@ -49,7 +50,10 @@ class CommunityMainScreen extends StatelessWidget {
                 ? SliverList(
                     delegate: SliverChildBuilderDelegate(
                         (context, index) =>
-                            PostListTile(post: viewModel.posts[index]),
+                            (viewModel.posts[index].imageUrls.isEmpty)
+                                ? PostListTile(post: viewModel.posts[index])
+                                : PostListTileWithImage(
+                                    post: viewModel.posts[index]),
                         childCount: viewModel.posts.length),
                   )
                 : SliverList(

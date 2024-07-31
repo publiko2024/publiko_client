@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: getHeight(30)),
-          Image.asset('assets/images/slogan.png'),
+          Image.asset('assets/images/home_logo.png',height: getHeight(60),fit: BoxFit.fitHeight,),
           SizedBox(height: getHeight(20)),
           TopBanner(imageUrls: viewModel.bannerImageUrlList),
           SizedBox(height: getHeight(30)),

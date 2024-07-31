@@ -30,14 +30,14 @@ class PostCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                (post.imageUrls.isEmpty)
-                    ? Image.asset(
-                        'assets/images/default_img.png',
-                        height: getHeight(130),
-                        width: double.infinity,
-                        fit: BoxFit.fitWidth,
-                      )
-                    : Image.asset(post.imageUrls.first),
+                Image.asset(
+                  (post.imageUrls.isEmpty)
+                      ? 'assets/images/post_default_img.png'
+                      : post.imageUrls.first,
+                  height: getHeight(130),
+                  width: double.infinity,
+                  fit: BoxFit.fitWidth,
+                ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: getWidth(12)),
                   child: Column(

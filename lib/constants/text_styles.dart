@@ -68,4 +68,10 @@ abstract class TextStyles {
     fontFamily: 'Pretendard',
     fontWeight: FontWeight.w400,
   );
+   static TextStyle nicknameText = TextStyle(
+    fontSize: getHeight(14),
+    color: ColorStyles.primary,
+    fontFamily: 'Pretendard',
+    fontWeight: FontWeight.w600,
+  );
 }
