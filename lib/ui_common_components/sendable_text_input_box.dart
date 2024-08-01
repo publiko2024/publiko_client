@@ -54,10 +54,7 @@ class SendableTextInputBox extends StatelessWidget {
                     borderSide:
                         BorderSide(color: ColorStyles.primary, width: 1.0),
                   ),
-                  suffixIcon: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(CupertinoIcons.mic_fill),
-                  ),
+                 
                   contentPadding: EdgeInsets.symmetric(
                     vertical: getHeight(10),
                     horizontal: getWidth(15),
