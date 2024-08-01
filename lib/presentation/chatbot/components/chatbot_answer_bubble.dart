@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:publiko_app/constants/color_styles.dart';
 import 'package:publiko_app/constants/size_config.dart';
 import 'package:publiko_app/constants/text_styles.dart';
+import 'package:publiko_app/presentation/chatbot/chatbot_screen_view_model.dart';
 
 class ChatbotAnswerBubble extends StatelessWidget {
   final String answer;
+
   const ChatbotAnswerBubble({
     super.key,
     required this.answer,
@@ -13,6 +16,8 @@ class ChatbotAnswerBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<ChatbotScreenViewModel>();
+
     return Align(
       alignment: Alignment.centerLeft,
       child: Row(
@@ -27,25 +32,48 @@ class ChatbotAnswerBubble extends StatelessWidget {
                 padding: EdgeInsets.all(getWidth(5)),
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
-                  color: ColorStyles.white, // 하얀색 배경
+                  color: ColorStyles.white,
                 ),
                 child: Image.asset(
                   'assets/images/kobot.png',
-                  fit: BoxFit.cover, // 이미지가 동그라미에 맞게 잘리면서 꽉 차도록 설정
+                  fit: BoxFit.cover,
                 ),
               ),
               const SizedBox(
                 height: 5,
               ),
               CircleAvatar(
+                backgroundColor: ColorStyles.white,
+                radius: getWidth(17),
+                child: IconButton(
+                  onPressed: () {
+                    viewModel.speakText(answer);
+                  },
+                  icon: const Icon(
+                    CupertinoIcons.speaker_2_fill,
+                    color: ColorStyles.secondary,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              if (viewModel.isSpeaking)
+                CircleAvatar(
                   backgroundColor: ColorStyles.white,
                   radius: getWidth(17),
                   child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        CupertinoIcons.speaker_2_fill,
-                        color: ColorStyles.secondary,
-                      )))
+                    onPressed: () {
+                      viewModel.stopSpeaking();
+                    },
+                    icon: const Icon(
+                      CupertinoIcons.stop_fill,
+                      color: ColorStyles.secondary,
+                    ),
+                  ),
+                )
+              else
+                const SizedBox(),
             ],
           ),
           SizedBox(

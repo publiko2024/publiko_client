@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:publiko_app/domain/model/chat_message.dart';
 import 'package:publiko_app/domain/repository/chat_repo.dart';
 
 class ChatbotScreenViewModel with ChangeNotifier {
   final ChatRepo _chatRepo;
+  late FlutterTts _flutterTts;
 
   ChatbotScreenViewModel(this._chatRepo) {
+    _flutterTts = FlutterTts();
     fetchExistChatMessages();
+    _initializeTtsSettings();
   }
 
   final TextEditingController _textController = TextEditingController();
@@ -24,8 +28,17 @@ class ChatbotScreenViewModel with ChangeNotifier {
   bool _isWaitingAnswer = false;
   bool get isWaitingAnswer => _isWaitingAnswer;
 
+  bool _isSpeaking = false;
+  bool get isSpeaking => _isSpeaking;
+
   void fetchExistChatMessages() async {
     // _messages = await _chatRepo.getExistedChatMessages();
+  }
+
+  void _initializeTtsSettings() async {
+    await _flutterTts.setLanguage("ko-KR");
+    await _flutterTts.setSpeechRate(0.5); 
+    await _flutterTts.setPitch(1.0);
   }
 
   Future<void> sendMessage() async {
@@ -57,10 +70,31 @@ class ChatbotScreenViewModel with ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> speakText(String text) async {
+    if (_isSpeaking) {
+      return;
+    }
+    _isSpeaking = true;
+    notifyListeners();
+    await _flutterTts.speak(text);
+  }
+
+  Future<void> stopSpeaking() async {
+    if (!_isSpeaking) {
+      return;
+    }
+    await _flutterTts.stop();
+    _isSpeaking = false;
+    notifyListeners();
+  }
+
+  
+
   @override
   void dispose() {
     _textController.dispose();
     _focusNode.dispose();
+    _flutterTts.stop();
     super.dispose();
   }
 }

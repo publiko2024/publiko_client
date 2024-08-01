@@ -60,7 +60,8 @@ class ChatbotScreen extends StatelessWidget {
                   ? const RecommandQuestion()
                   : ChatList(
                       scrollController: viewModel.scrollController,
-                      messages: viewModel.messages),
+                      messages: viewModel.messages,
+                    ),
             ),
             SendableTextInputBox(
               focusNode: viewModel.focusNode,
