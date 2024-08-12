@@ -9,8 +9,13 @@ import 'package:publiko_app/util/date_convert.dart';
 class PostBody extends StatelessWidget {
   final Post post;
   final ScrollController scrollController;
+  final void Function(String) describePicture;
+
   const PostBody(
-      {super.key, required this.post, required this.scrollController});
+      {super.key,
+      required this.post,
+      required this.scrollController,
+      required this.describePicture});
 
   @override
   Widget build(BuildContext context) {
@@ -52,10 +57,13 @@ class PostBody extends StatelessWidget {
                     ...post.imageUrls.map((url) => Padding(
                           padding: EdgeInsets.only(
                               bottom: getHeight(5)), // 이미지 간격 조정
-                          child: Image.asset(
-                            url, // 이미지 URL
-                            width: double.infinity,
-                            fit: BoxFit.fitWidth, // 이미지 크기 조절
+                          child: GestureDetector(
+                            onLongPress: () => describePicture(url),
+                            child: Image.asset(
+                              url, // 이미지 URL
+                              width: double.infinity,
+                              fit: BoxFit.fitWidth, // 이미지 크기 조절
+                            ),
                           ),
                         )),
                   SizedBox(height: getHeight(10)),

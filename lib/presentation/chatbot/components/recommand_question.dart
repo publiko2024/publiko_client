@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:publiko_app/constants/color_styles.dart';
 import 'package:publiko_app/constants/size_config.dart';
 import 'package:publiko_app/constants/text_styles.dart';
+import 'package:publiko_app/ui_common_components/default_btn.dart';
 
 class RecommandQuestion extends StatelessWidget {
   const RecommandQuestion({super.key});
@@ -32,6 +35,16 @@ class RecommandQuestion extends StatelessWidget {
             _questionBox('올해 진행 되는 문화 행사 알려줘'),
             _questionBox('서울에 점자 도서 대여할 수 있는 곳 알려줘'),
             _questionBox('주변에 예약할 수 있는 운동 센터 알려줘'),
+            SizedBox(height: getHeight(20),),
+            DefaultBtn(text: '사진 묘사하기', onPressed: (){
+              context.go('/chatbotPicture');
+            },
+            btnColor: ColorStyles.secondary,
+            width: getWidth(170),
+            hasIcon: true,
+            iconPath: 'assets/icons/picture.svg',
+            iconSize: getWidth(30),
+            )
           ],
         ),
       ),

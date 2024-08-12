@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:publiko_app/constants/color_styles.dart';
+import 'package:publiko_app/constants/size_config.dart';
 import 'package:publiko_app/constants/text_styles.dart';
 import 'package:publiko_app/presentation/post_create/components/input_area.dart';
 import 'package:publiko_app/presentation/post_create/components/select_photo_bottom_box.dart';
@@ -17,11 +20,19 @@ class PostCreateScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: ColorStyles.white,
         appBar: AppBar(
+          backgroundColor: ColorStyles.white,
           title: Text(
             '글쓰기',
             style: TextStyles.appBarText,
           ),
           centerTitle: true,
+          leading: IconButton(
+            padding: EdgeInsets.only(left: defaultPaddingWidth),
+            onPressed: () {
+              context.pop();
+            },
+            icon: const Icon(CupertinoIcons.back),
+          ),
           actions: [
             (viewModel.title.isEmpty || viewModel.content.isEmpty)
                 ? TextButton(
@@ -44,7 +55,7 @@ class PostCreateScreen extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Expanded(child: InputArea()),
+            const Expanded(child: InputArea()),
             SafeArea(
               child: SelectPhotoBottomBox(
                 pickedImages: viewModel.pickedImages,

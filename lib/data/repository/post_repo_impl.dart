@@ -28,4 +28,10 @@ class PostRepoImpl implements PostRepo {
     );
     return post;
   }
+  
+  @override
+  Future<void> createPost() {
+    // TODO: implement createPost
+    throw UnimplementedError();
+  }
 }

@@ -37,7 +37,8 @@ class DefaultBtn extends StatelessWidget {
       onPressed: isActive ? onPressed : null,
       style: TextButton.styleFrom(
         foregroundColor: isActive ? ColorStyles.white : ColorStyles.gray2,
-        backgroundColor: isActive ? ColorStyles.primary : ColorStyles.gray4,
+        backgroundColor:
+            isActive ? btnColor ?? ColorStyles.primary : ColorStyles.gray4,
         minimumSize: Size(
           width ?? getWidth(335),
           height ?? getHeight(56),

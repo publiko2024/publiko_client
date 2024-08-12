@@ -26,7 +26,7 @@ class ChatbotScreen extends StatelessWidget {
           leading: IconButton(
             padding: EdgeInsets.only(left: defaultPaddingWidth),
             onPressed: () {
-              context.pop();
+              context.go('/');
             },
             icon: const Icon(CupertinoIcons.back),
           ),
@@ -68,6 +68,7 @@ class ChatbotScreen extends StatelessWidget {
               textController: viewModel.textController,
               send: viewModel.sendMessage,
               hintText: '무엇이든 물어보세요',
+              usePictureDescription: true,
             ),
           ],
         ),

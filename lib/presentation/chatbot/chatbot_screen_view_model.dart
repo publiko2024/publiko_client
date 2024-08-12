@@ -37,7 +37,7 @@ class ChatbotScreenViewModel with ChangeNotifier {
 
   void _initializeTtsSettings() async {
     await _flutterTts.setLanguage("ko-KR");
-    await _flutterTts.setSpeechRate(0.5); 
+    await _flutterTts.setSpeechRate(0.5);
     await _flutterTts.setPitch(1.0);
   }
 
@@ -87,8 +87,6 @@ class ChatbotScreenViewModel with ChangeNotifier {
     _isSpeaking = false;
     notifyListeners();
   }
-
-  
 
   @override
   void dispose() {

@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:publiko_app/constants/color_styles.dart';
 import 'package:publiko_app/constants/size_config.dart';
 
@@ -9,6 +9,7 @@ class SendableTextInputBox extends StatelessWidget {
   final TextEditingController textController;
   final void Function() send;
   final String hintText;
+  final bool usePictureDescription;
 
   const SendableTextInputBox({
     super.key,
@@ -16,6 +17,7 @@ class SendableTextInputBox extends StatelessWidget {
     required this.textController,
     required this.send,
     required this.hintText,
+    this.usePictureDescription = false,
   });
 
   @override
@@ -49,12 +51,23 @@ class SendableTextInputBox extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: hintText,
                   focusColor: ColorStyles.primary,
+                  suffixIcon: (usePictureDescription)
+                      ? IconButton(
+                          onPressed: () {
+                            context.go('/chatbotPicture');
+                          },
+                          icon: SvgPicture.asset(
+                            'assets/icons/picture.svg',
+                            colorFilter: const ColorFilter.mode(
+                                ColorStyles.gray1, BlendMode.srcIn),
+                          ),
+                        )
+                      : const SizedBox(),
                   focusedBorder: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                     borderSide:
                         BorderSide(color: ColorStyles.primary, width: 1.0),
                   ),
-                 
                   contentPadding: EdgeInsets.symmetric(
                     vertical: getHeight(10),
                     horizontal: getWidth(15),

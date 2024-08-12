@@ -1,15 +1,23 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:publiko_app/domain/model/comment.dart';
 import 'package:publiko_app/domain/model/post.dart';
+import 'package:publiko_app/domain/repository/chat_repo.dart';
 import 'package:publiko_app/domain/repository/comment_repo.dart';
 import 'package:publiko_app/domain/repository/post_repo.dart';
 
 class PostDetailScreenViewModel with ChangeNotifier {
   final PostRepo _postRepo;
   final CommentRepo _commentRepo;
-  PostDetailScreenViewModel(this._postRepo, this._commentRepo);
+  final ChatRepo _chatRepo;
+  late FlutterTts _flutterTts;
+  PostDetailScreenViewModel(this._postRepo, this._commentRepo, this._chatRepo) {
+    _flutterTts = FlutterTts();
+    _initializeTtsSettings();
+  }
 
   Post _post = Post(
       id: -1,
@@ -35,6 +43,12 @@ class PostDetailScreenViewModel with ChangeNotifier {
 
   bool _isTitleVisibleInAppBar = false;
   bool get isTitleVisibleInAppBar => _isTitleVisibleInAppBar;
+
+  void _initializeTtsSettings() async {
+    await _flutterTts.setLanguage("ko-KR");
+    await _flutterTts.setSpeechRate(0.5);
+    await _flutterTts.setPitch(1.0);
+  }
 
   void onScroll() {
     // 스크롤 오프셋에 따라 타이틀의 표시 여부 결정 (예: 50px)
@@ -67,6 +81,14 @@ class PostDetailScreenViewModel with ChangeNotifier {
           duration: const Duration(milliseconds: 400),
           curve: Curves.fastOutSlowIn);
     });
+  }
+
+  Future<void> describePicture(String imageUrl) async {
+    XFile imageFile = XFile(imageUrl);
+    await _flutterTts.speak('이미지를 분석 중 입니다.');
+    String description =
+        await _chatRepo.createPostImageDescription(imageFile: imageFile);
+    await _flutterTts.speak(description);
   }
 
   @override

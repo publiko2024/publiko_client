@@ -1,3 +1,4 @@
+import 'package:image_picker/image_picker.dart';
 import 'package:publiko_app/data/data_source/chatbot/chatbot_api.dart';
 
 class ChatbotApiMock implements ChatbotApi {
@@ -12,4 +13,18 @@ class ChatbotApiMock implements ChatbotApi {
 2.일반 체육관의 장애인 접근성: 일부 일반 체육관도 장애인을 위해 접근성을 개선해 놓은 곳이 있습니다. 휠체어 접근이 가능한 운동 기구, 경사로, 그리고 장애인을 위한 개인 트레이너가 있는 경우가 많습니다.
 ''';
   }
+
+  @override
+  Future<String> sendPicture({required XFile imageFile}) {
+    // TODO: implement sendPicture
+    throw UnimplementedError();
+  }
+  
+  @override
+  Future<String> sendPostPicture({required XFile imageFile}) {
+    // TODO: implement sendPostPicture
+    throw UnimplementedError();
+  }
+
+  
 }

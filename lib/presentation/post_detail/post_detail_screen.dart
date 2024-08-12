@@ -66,6 +66,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
               child: PostBody(
                 post: viewModel.post,
                 scrollController: viewModel.scrollController,
+                describePicture: viewModel.describePicture,
               ),
             ),
             SendableTextInputBox(

@@ -7,6 +7,8 @@ import 'package:publiko_app/data/repository/comment_repo_impl.dart';
 import 'package:publiko_app/data/repository/post_repo_impl.dart';
 import 'package:publiko_app/presentation/chatbot/chatbot_screen.dart';
 import 'package:publiko_app/presentation/chatbot/chatbot_screen_view_model.dart';
+import 'package:publiko_app/presentation/chatbot_picture/chatbot_picture_screen.dart';
+import 'package:publiko_app/presentation/chatbot_picture/chatbot_picture_screen_view_model.dart';
 import 'package:publiko_app/presentation/post_create/post_create_screen.dart';
 import 'package:publiko_app/presentation/post_create/post_create_screen_view_model.dart';
 import 'package:publiko_app/presentation/post_detail/post_detail_screen.dart';
@@ -48,8 +50,13 @@ class Routes {
           builder: (BuildContext context, GoRouterState state) {
             final int postId = state.extra as int;
             return ChangeNotifierProvider(
-              create: (context) =>
-                  PostDetailScreenViewModel(PostRepoImpl(), CommentRepoImpl()),
+              create: (context) => PostDetailScreenViewModel(
+                PostRepoImpl(),
+                CommentRepoImpl(),
+                ChatRepoImpl(
+                  ChatbotApiImpl(),
+                ),
+              ),
               child: PostDetailScreen(postId: postId),
             );
           }),
@@ -61,6 +68,16 @@ class Routes {
                 PostRepoImpl(),
               ),
               child: const PostCreateScreen(),
+            );
+          }),
+      GoRoute(
+          path: '/chatbotPicture',
+          builder: (BuildContext context, GoRouterState state) {
+            return ChangeNotifierProvider(
+              create: (context) => ChatbotPictureScreenViewModel(
+                ChatRepoImpl(ChatbotApiImpl()),
+              ),
+              child: const ChatbotPictureScreen(),
             );
           }),
     ],

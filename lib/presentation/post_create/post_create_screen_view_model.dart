@@ -22,7 +22,9 @@ class PostCreateScreenViewModel with ChangeNotifier {
   final String _content = '';
   String get content => _content;
 
-  void createPost(BuildContext context) async {}
+  void createPost(BuildContext context) async {
+    await _postRepo.createPost();
+  }
 
   //갤러리에서 이미지 가져오는 함수
   void getImageFromGallery() async {
